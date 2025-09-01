@@ -463,7 +463,7 @@ export default function Resume() {
                       <p className="text-sm text-slate-500 dark:text-slate-400">Senior Division Finalist 2024</p>
                     </div>
                     <div className={`p-4 rounded-lg ${darkMode ? 'bg-slate-700' : 'bg-slate-50'}`}>
-                      <h4 className="font-semibold mb-1">Microsoft Office Specialist: Excel Associate</h4>
+                      <h4 className="font-semibold mb-1">Microsoft Office Specialist: Excel Associate 2025</h4>
                       <p className="text-sm text-slate-500 dark:text-slate-400">2025</p>
                     </div>
                   </div>
