@@ -56,7 +56,7 @@ const { darkMode, toggleDarkMode } = useTheme();
           <div className="flex justify-between items-center">
             <div className="font-mono text-lg font-semibold">
               <span className={darkMode ? 'text-blue-400' : 'text-blue-600'}>{'<'}</span>
-              John Shah
+              Ansh Shah
               <span className={darkMode ? 'text-blue-400' : 'text-blue-600'}>{'>'}</span>
             </div>
             
