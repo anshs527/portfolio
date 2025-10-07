@@ -157,7 +157,7 @@ const { darkMode, toggleDarkMode } = useTheme();
           </h1>
           
           <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-8 max-w-3xl mx-auto leading-relaxed">
-            <span className={darkMode ? 'text-slate-200' : 'text-slate-700'}>Founding Engineer at Storato.io, fearless homecook, and a passionate coder who loves building impactful software solutions.</span>
+            <span className={darkMode ? 'text-slate-200' : 'text-slate-700'}>Software Engineer at NOBE Illinois, fearless homecook, and a passionate coder who loves building impactful software solutions.</span>
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -209,7 +209,7 @@ const { darkMode, toggleDarkMode } = useTheme();
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-                <span className={darkMode ? 'text-slate-200' : 'text-slate-700'}>Hi, I'm Ansh and I'm a Freshman at UIUC studying Math and Computer Science. I'm really interested in finding ways to use AI to improve quality of life and to educate people. Right now I'm working on Sous, an AI app that allows users to use AI to find recipes easily</span>
+                <span className={darkMode ? 'text-slate-200' : 'text-slate-700'}>Hi, I'm Ansh and I'm a student at UIUC studying Math and Computer Science. I'm really interested in finding ways to use AI to improve quality of life and to educate people. Right now I'm working on Sous, an AI app that allows users to use AI to find recipes easily</span>
               </p>
               
               <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
