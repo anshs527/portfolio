@@ -176,12 +176,12 @@ export default function Resume() {
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="text-2xl font-semibold mb-1">Software Engineer</h3>
-                      <p className={`text-lg ${darkMode ? 'text-blue-400' : 'text-blue-600'} mb-2`}>Storato.io</p>
+                      <p className={`text-lg ${darkMode ? 'text-blue-400' : 'text-blue-600'} mb-2`}>NOBE Consulting</p>
                       <div className="flex items-center text-sm text-slate-500 dark:text-slate-400">
                         <MapPin size={14} className="mr-1" />
                         <span className="mr-4">Champaign, IL</span>
                         <Calendar size={14} className="mr-1" />
-                        <span>Jun. 2025 – Present</span>
+                        <span>Aug. 2025 – Present</span>
                       </div>
                     </div>
                     <div className={`px-3 py-1 rounded-full text-xs font-medium ${
@@ -191,15 +191,39 @@ export default function Resume() {
                     </div>
                   </div>
                   <ul className="space-y-2 text-slate-700 dark:text-slate-300">
-                    <li>• Developed Python data scraping/sorting model collecting Json data for 50,000+ customer listings</li>
-                    <li>• Currently using HTML, Tailwind/CSS, and Appwrite to develop multi-page customer-side frontend with user authentication system</li>
+                    <li>• Working with software engineering team to develop highly responsive 10+ page frontend</li>
+                    <li>• Building custom elements with Next.js and Tailwind CSS for customer usability and to convey company brand.</li>
+                    <li>• Collaborating closely with designers via Figma to translate wireframes into 8+ website components aligned with modern
+design principles, accelerating front-end development by 33+%</li>
                   </ul>
                 </div>
 
                 <div className={`p-8 rounded-lg ${darkMode ? 'bg-slate-800' : 'bg-white'} shadow-lg`}>
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="text-2xl font-semibold mb-1">Statistics Research Assistant</h3>
+                      <h3 className="text-2xl font-semibold mb-1">Software Engineering Intern</h3>
+                      <p className={`text-lg ${darkMode ? 'text-blue-400' : 'text-blue-600'} mb-2`}>Storato.io</p>
+                      <div className="flex items-center text-sm text-slate-500 dark:text-slate-400">
+                        <MapPin size={14} className="mr-1" />
+                        <span className="mr-4">Urbana, IL</span>
+                        <Calendar size={14} className="mr-1" />
+                        <span>Jun. 2025 – Aug. 2025</span>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <ul className="space-y-2 text-slate-700 dark:text-slate-300">
+                    <li>• Engineered Python web scraping pipeline using Cr4wlai and Pandas to automate collection and structuring of 50,000+
+customer listings into JSON, reducing manual data entry</li>
+                    <li>• Worked with data analytics team to collect 10,000+ points of competitor data for customer profile and project potential
+market size</li>
+                  </ul>
+                </div>
+
+                <div className={`p-8 rounded-lg ${darkMode ? 'bg-slate-800' : 'bg-white'} shadow-lg`}>
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h3 className="text-2xl font-semibold mb-1">Research Assistant</h3>
                       <p className={`text-lg ${darkMode ? 'text-blue-400' : 'text-blue-600'} mb-2`}>UIC Math Department</p>
                       <div className="flex items-center text-sm text-slate-500 dark:text-slate-400">
                         <MapPin size={14} className="mr-1" />
@@ -210,16 +234,16 @@ export default function Resume() {
                     </div>
                   </div>
                   <ul className="space-y-2 text-slate-700 dark:text-slate-300">
-                    <li>• Researched applications and feasibility of mathematical and machine learning models to horse racing outcome prediction</li>
-                    <li>• Utilized various international race datasets to compile jockey and horse data</li>
-                    <li>• Explored potential implementations of regression and bayesian models</li>
+                    <li>• Researched applications and feasibility of mathematical and machine learning models to horse racing outcome prediction.</li>
+                    <li>• Utilized 20+ various international race datasets to compile jockey and horse data from 1000+ races into .Json format for
+data compilation </li>
                   </ul>
                 </div>
 
                 <div className={`p-8 rounded-lg ${darkMode ? 'bg-slate-800' : 'bg-white'} shadow-lg`}>
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="text-2xl font-semibold mb-1">SEO Intern</h3>
+                      <h3 className="text-2xl font-semibold mb-1">Search Engine Optimization/Marketing Intern</h3>
                       <p className={`text-lg ${darkMode ? 'text-blue-400' : 'text-blue-600'} mb-2`}>Fantasy Trading Room</p>
                       <div className="flex items-center text-sm text-slate-500 dark:text-slate-400">
                         <MapPin size={14} className="mr-1" />
@@ -236,30 +260,7 @@ export default function Resume() {
                   </ul>
                 </div>
 
-                <div className={`p-8 rounded-lg ${darkMode ? 'bg-slate-800' : 'bg-white'} shadow-lg`}>
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-2xl font-semibold mb-1">Financial & Technical Director</h3>
-                      <p className={`text-lg ${darkMode ? 'text-blue-400' : 'text-blue-600'} mb-2`}>Steam Dream Inc. 501(c)(3) Nonprofit</p>
-                      <div className="flex items-center text-sm text-slate-500 dark:text-slate-400">
-                        <MapPin size={14} className="mr-1" />
-                        <span className="mr-4">Naperville, IL</span>
-                        <Calendar size={14} className="mr-1" />
-                        <span>Jan. 2023 – Present</span>
-                      </div>
-                    </div>
-                    <div className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      darkMode ? 'bg-green-400 text-green-900' : 'bg-green-100 text-green-800'
-                    }`}>
-                      Leadership
-                    </div>
-                  </div>
-                  <ul className="space-y-2 text-slate-700 dark:text-slate-300">
-                    <li>• Managed startup finances and secured $3,900+ in initial funding for a non-profit in initial growth phase</li>
-                    <li>• Planned and led events for 500+ elementary and middle schoolers</li>
-                    <li>• Programmed full multi-page organization website using HTML, CSS, JavaScript, and VUE for parent communication and registration</li>
-                  </ul>
-                </div>
+          
               </div>
             )}
 
@@ -278,6 +279,9 @@ export default function Resume() {
                         <Calendar size={14} className="mr-1" />
                         <span>Expected May 2029</span>
                       </div>
+                      <p className={`text-lg ${darkMode ? 'text-blue-400' : 'text-blue-600'} mb-2`}>Relevant Coursework</p>
+                          Intro to CS I (Java), Intro to CS II (C++), Discrete Structures, Abstract Linear Algebra, Differential Equations,
+                          Probability Theory, Intro to Higher Math, Data Science Discovery, Statistical Analysis
                     </div>
                     <div className="text-right">
                       <div className={`px-4 py-2 rounded-lg ${darkMode ? 'bg-green-900 text-green-400' : 'bg-green-100 text-green-800'} mb-2`}>
@@ -301,6 +305,7 @@ export default function Resume() {
                         <Calendar size={14} className="mr-1" />
                         <span>Graduated May 2025</span>
                       </div>
+
                     </div>
                     <div className="text-right">
                       <div className={`px-4 py-2 rounded-lg ${darkMode ? 'bg-green-900 text-green-400' : 'bg-green-100 text-green-800'}`}>
