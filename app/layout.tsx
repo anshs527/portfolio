@@ -1,9 +1,9 @@
 // app/layout.tsx
 import './globals.css'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Nunito_Sans, JetBrains_Mono } from 'next/font/google'
 import { ThemeProvider } from './contexts/ThemeContext'
 
-const bodyFont = Inter({ subsets: ['latin'], variable: '--font-body', display: 'swap' })
+const bodyFont = Nunito_Sans({ subsets: ['latin'], variable: '--font-body', display: 'swap' })
 const codeFont = JetBrains_Mono({ subsets: ['latin'], variable: '--font-code', display: 'swap' })
 
 export const metadata = {
@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${bodyFont.variable} ${codeFont.variable}`}>
+    <html lang="en" className={`light ${bodyFont.variable} ${codeFont.variable}`}>
       <body>
         <ThemeProvider>
           {children}

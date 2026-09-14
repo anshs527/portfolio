@@ -11,24 +11,26 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
+  const [ready, setReady] = useState(false);
 
-  // Load theme preference from localStorage on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem('darkMode');
-    if (savedTheme !== null) {
-      setDarkMode(JSON.parse(savedTheme));
+    try {
+      const saved = localStorage.getItem('darkMode');
+      setDarkMode(saved === 'true' || (saved !== 'false' && window.matchMedia('(prefers-color-scheme: dark)').matches));
+    } catch {
+      setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
     }
+    setReady(true);
   }, []);
 
-  // Save theme preference to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('darkMode', JSON.stringify(darkMode));
-  }, [darkMode]);
+    if (!ready) return;
+    document.documentElement.classList.toggle('light', !darkMode);
+    try { localStorage.setItem('darkMode', String(darkMode)); } catch { /* Theme still works when storage is unavailable. */ }
+  }, [darkMode, ready]);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  const toggleDarkMode = () => setDarkMode(value => !value);
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>

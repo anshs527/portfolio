@@ -1,8 +1,12 @@
 'use client';
 
-import { ChevronDown, Code, Github, Linkedin, Instagram, Mail } from 'lucide-react';
+import { Code, Github, Linkedin, Instagram, Mail } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowUpRight, Radio, ChartNoAxesCombined } from 'lucide-react';
+import { projects } from '@/lib/data/projects';
 import Nav from './components/Nav';
+import Contours from './components/Contours';
 import { useTheme } from './contexts/ThemeContext';
 import { profile, socials } from '@/lib/data/profile';
 
@@ -14,13 +18,14 @@ export default function Home() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     }
   };
 
   const ink = darkMode ? 'text-ink-dark' : 'text-ink-light';
   const faint = darkMode ? 'text-faint-dark' : 'text-faint-light';
   const accent = darkMode ? 'text-accent-dark' : 'text-accent-light';
+  const clay = darkMode ? 'text-clay-dark' : 'text-clay-light';
   const surface = darkMode ? 'bg-surface-dark' : 'bg-surface-light';
   const edge = darkMode ? 'border-edge-dark' : 'border-edge-light';
 
@@ -33,138 +38,112 @@ export default function Home() {
       <Nav current="home" onHomeClick={() => scrollToSection('home')} />
 
       {/* Home Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="mb-8">
+      <section id="home" className="relative min-h-[80svh] flex items-center px-6 pt-32 pb-20 overflow-hidden">
+        <Contours className={`absolute inset-0 w-full h-full ${accent} pointer-events-none`} />
+
+        <div className="relative max-w-4xl mx-auto w-full">
+          <div className="flex items-start gap-6 mb-8">
             <div
-              className={`w-32 h-32 mx-auto mb-8 rounded-full border-4 flex items-center justify-center overflow-hidden relative ${surface} ${edge}`}
+              className={`shrink-0 w-16 h-16 border overflow-hidden relative ${surface} ${edge}`}
+              style={{ borderRadius: '42% 58% 65% 35% / 45% 40% 60% 55%' }}
             >
               <Image
                 src="/images/pfp.jpg"
                 alt="Ansh Shah"
-                width={128}
-                height={128}
-                className="w-full h-full object-cover rounded-full scale-[1.2]"
+                width={64}
+                height={64}
+                className="w-full h-full object-cover scale-[1.2]"
                 priority
               />
             </div>
+            <div>
+              <p className={`font-note text-2xl -rotate-1 mb-1 ${clay}`}>Curiosity, put to work</p>
+              <h1 className="font-display text-5xl md:text-7xl leading-[1.05]">
+                Ansh Shah
+              </h1>
+            </div>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-light mb-6">
-            Hi, I&apos;m <span className={`font-semibold ${accent}`}>Ansh</span>
-          </h1>
+          <p className={`font-mono text-sm mb-6 ${faint}`}>{profile.currentTitle}</p>
 
-          <p className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed ${ink}`}>{profile.heroTagline}</p>
+          <p className={`text-xl md:text-2xl max-w-2xl leading-relaxed mb-10 ${ink}`}>{profile.heroTagline}</p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <button
-              onClick={() => scrollToSection('about')}
-              className={`px-8 py-3 rounded-lg font-medium transition-all transform hover:scale-105 ${
-                darkMode
-                  ? 'bg-accent-dark hover:bg-accent-hover-dark text-accent-ink-dark'
-                  : 'bg-accent-light hover:bg-accent-hover-light text-accent-ink-light'
-              }`}
-            >
-              About Me
-            </button>
-            <button
-              onClick={() => scrollToSection('socials')}
-              className={`px-8 py-3 rounded-lg font-medium transition-all transform hover:scale-105 border-2 ${
-                darkMode
-                  ? 'border-edge-dark text-faint-dark hover:bg-surface-dark'
-                  : 'border-edge-light text-faint-light hover:bg-surface-light'
-              }`}
-            >
-              Get In Touch
-            </button>
+          <div className="flex flex-wrap gap-3 mb-8"><Link href="/projects" className="pill-link primary">Explore my work <ArrowUpRight size={18} /></Link><Link href="/resume" className="pill-link">View résumé</Link></div>
+          <div className="flex flex-wrap gap-3">
+            {profile.techTags.slice(0, 6).map((tech) => (
+              <span
+                key={tech}
+                className={`px-3 py-1.5 rounded-md text-sm font-mono border ${surface} ${faint} ${edge}`}
+              >
+                {tech}
+              </span>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <div className="animate-bounce">
-            <button
-              onClick={() => scrollToSection('about')}
-              className={`p-2 rounded-full transition-colors ${
-                darkMode ? 'text-faint-dark hover:text-accent-dark' : 'text-faint-light hover:text-accent-light'
-              }`}
-            >
-              <ChevronDown size={24} />
-            </button>
+      <section className="px-6 py-16" aria-labelledby="selected-work">
+        <div className="max-w-4xl mx-auto">
+          <p className={`font-note ${accent}`}>Selected work</p>
+          <h2 id="selected-work" className="text-3xl md:text-4xl mb-8">From a question to a working system.</h2>
+          <div className="grid md:grid-cols-2 gap-5">
+            {projects.slice(0, 2).map((project, index) => {
+              const Icon = index === 0 ? Radio : ChartNoAxesCombined;
+              return <Link key={project.slug} href={`/projects/${project.slug}`} className={`organic-hover p-7 rounded-xl border ${surface} ${edge}`}>
+                <Icon size={28} className={`mb-8 ${accent}`} aria-hidden="true" />
+                <p className={`text-sm mb-2 ${faint}`}>{index === 0 ? 'Signal processing · C++ · ML' : 'Probability · Data engineering'}</p>
+                <h3 className="text-2xl font-bold mb-3">{index === 0 ? 'Finding meaning in the noise.' : 'A prediction is only half the bet.'}</h3>
+                <p className={`leading-relaxed mb-6 ${faint}`}>{index === 0 ? 'Classifying radio signals, then measuring every microsecond of inference.' : 'Exploring the gap between predicting player performance and finding a mathematical edge.'}</p>
+                <span className={`inline-flex items-center gap-2 font-bold ${accent}`}>Explore the project <ArrowUpRight size={18} /></span>
+              </Link>;
+            })}
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="min-h-screen flex items-center px-6 py-20">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light mb-6">
-              About <span className={`font-semibold ${accent}`}>Me</span>
-            </h2>
-            <div className={`w-24 h-1 mx-auto rounded ${darkMode ? 'bg-accent-dark' : 'bg-accent-light'}`}></div>
-          </div>
+      <section id="about" className="flex items-center px-6 py-20">
+        <div className="max-w-6xl mx-auto w-full">
+          <p className={`font-note text-2xl -rotate-1 mb-1 ${clay}`}>a bit about me</p>
+          <h2 className="font-display text-3xl md:text-4xl mb-12">More than just a résumé</h2>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-[1.3fr_1fr] gap-16 items-start">
             <div className="space-y-6">
               {profile.bio.map((paragraph, i) => (
                 <p key={i} className={`text-lg leading-relaxed ${ink}`}>
                   {paragraph}
                 </p>
               ))}
-
-              <div className="flex flex-wrap gap-3 mt-8">
-                {profile.techTags.map((tech) => (
-                  <span
-                    key={tech}
-                    className={`px-4 py-2 rounded-full text-sm font-mono border ${surface} ${ink} ${edge}`}
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
             </div>
 
-            <div className="space-y-8">
-              <div className={`p-8 rounded-2xl shadow-lg ${surface}`}>
-                <div className="flex items-center mb-4">
-                  <Code size={24} className={accent} />
-                  <h3 className="text-xl font-semibold ml-3">What I Do</h3>
-                </div>
-                <ul className="space-y-3">
-                  {profile.whatIDo.map((item) => (
-                    <li key={item} className={ink}>
-                      • {item}
-                    </li>
-                  ))}
-                </ul>
+            <div className={`p-8 rounded-xl border ${surface} ${edge}`}>
+              <div className="flex items-center mb-4">
+                <Code size={20} className={accent} />
+                <h3 className="text-lg font-semibold ml-3">What I do</h3>
               </div>
-
-              <div className="text-center">
-                <button
-                  onClick={() => scrollToSection('socials')}
-                  className={`inline-flex items-center px-6 py-3 rounded-lg font-medium transition-all transform hover:scale-105 border ${surface} ${faint} ${edge}`}
-                >
-                  Let&apos;s Connect
-                  <ChevronDown size={16} className="ml-2 transform rotate-[-90deg]" />
-                </button>
-              </div>
+              <ul className={`space-y-3 ${ink}`}>
+                {profile.whatIDo.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className={accent}>—</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
       {/* Socials Section */}
-      <section id="socials" className="min-h-screen flex items-center px-6 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-light mb-6">
-            Let&apos;s <span className={`font-semibold ${accent}`}>Connect</span>
-          </h2>
-          <div className={`w-24 h-1 mx-auto rounded mb-12 ${darkMode ? 'bg-accent-dark' : 'bg-accent-light'}`}></div>
-
-          <p className={`text-xl mb-16 max-w-2xl mx-auto ${faint}`}>
-            I&apos;m always interested in new opportunities, collaborations, or just having a chat about technology
-            and innovation.
+      <section id="socials" className="flex items-center px-6 py-20">
+        <div className="max-w-4xl mx-auto w-full">
+          <p className={`font-note text-2xl -rotate-1 mb-1 ${clay}`}>say hi</p>
+          <h2 className="font-display text-3xl md:text-4xl mb-6">Let&apos;s connect</h2>
+          <p className={`text-lg mb-12 max-w-xl ${faint}`}>
+            Always interested in new opportunities, collaborations, or a chat about technology and innovation.
           </p>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid sm:grid-cols-2 gap-4">
             {socials.map((social) => {
               const Icon = socialIcons[social.label as keyof typeof socialIcons];
               return (
@@ -173,16 +152,20 @@ export default function Home() {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`group p-8 rounded-2xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl ${surface}`}
+                  className={`organic-hover group flex items-center gap-4 p-5 rounded-xl border ${surface} ${edge} ${
+                    darkMode ? 'hover:border-accent-dark' : 'hover:border-accent-light'
+                  }`}
                 >
                   <Icon
-                    size={40}
-                    className={`mx-auto mb-4 transition-colors ${
+                    size={22}
+                    className={`shrink-0 transition-colors ${
                       darkMode ? 'text-faint-dark group-hover:text-accent-dark' : 'text-faint-light group-hover:text-accent-light'
                     }`}
                   />
-                  <h3 className="font-semibold text-lg mb-2">{social.label}</h3>
-                  <p className={`text-sm font-mono ${faint}`}>{social.handle}</p>
+                  <div>
+                    <h3 className="font-medium">{social.label}</h3>
+                    <p className={`text-sm font-mono ${faint}`}>{social.handle}</p>
+                  </div>
                 </a>
               );
             })}
