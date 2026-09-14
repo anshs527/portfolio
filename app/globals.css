@@ -1,26 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-dark: #18191b;
+  --surface-dark: #201f1e;
+  --edge-dark: #302f2c;
+  --ink-dark: #eae8e3;
+  --faint-dark: #a6a099;
+  --accent-dark: #6f9c7a;
+  --accent-hover-dark: #85b28f;
+  --accent-ink-dark: #10130f;
+
+  --bg-light: #f7f6f3;
+  --surface-light: #ffffff;
+  --edge-light: #e3e0da;
+  --ink-light: #1e1d1b;
+  --faint-light: #666358;
+  --accent-light: #46704f;
+  --accent-hover-light: #395c40;
+  --accent-ink-light: #f7f6f3;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-code);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-canvas-dark: var(--bg-dark);
+  --color-canvas-light: var(--bg-light);
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-light: var(--surface-light);
+  --color-edge-dark: var(--edge-dark);
+  --color-edge-light: var(--edge-light);
+  --color-ink-dark: var(--ink-dark);
+  --color-ink-light: var(--ink-light);
+  --color-faint-dark: var(--faint-dark);
+  --color-faint-light: var(--faint-light);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent-light: var(--accent-light);
+  --color-accent-hover-dark: var(--accent-hover-dark);
+  --color-accent-hover-light: var(--accent-hover-light);
+  --color-accent-ink-dark: var(--accent-ink-dark);
+  --color-accent-ink-light: var(--accent-ink-light);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }

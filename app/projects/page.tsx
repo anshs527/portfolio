@@ -1,120 +1,154 @@
 'use client';
 
-import { Moon, ArrowLeft, Construction } from 'lucide-react';
-import Link from 'next/link';
-import Image from 'next/image';
+import { useState } from 'react';
+import { Github, ArrowLeft, Calendar } from 'lucide-react';
+import Nav from '../components/Nav';
 import { useTheme } from '../contexts/ThemeContext';
+import { projects, type Project } from '@/lib/data/projects';
 
-export default function UnderConstruction() {
-  const { darkMode, toggleDarkMode } = useTheme();
+export default function Projects() {
+  const { darkMode } = useTheme();
+  const [selected, setSelected] = useState<Project | null>(null);
 
-  return (
-    <div className={`min-h-screen transition-colors duration-300 ${
-      darkMode ? 'bg-slate-900 text-slate-100' : 'bg-slate-50 text-slate-900'
-    }`}>
-      {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        darkMode ? 'bg-slate-900/90' : 'bg-slate-50/90'
-      } backdrop-blur-sm border-b ${
-        darkMode ? 'border-slate-800' : 'border-slate-200'
-      }`}>
-        <div className="max-w-4xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <Link 
-              href="/"
-              className={`flex items-center space-x-2 transition-colors ${
-                darkMode ? 'text-slate-300 hover:text-blue-400' : 'text-slate-600 hover:text-blue-600'
+  const getStatusColor = (status: Project['status']) => {
+    switch (status) {
+      case 'Completed':
+        return darkMode ? 'text-green-400' : 'text-green-600';
+      case 'In Progress':
+        return darkMode ? 'text-accent-dark' : 'text-accent-light';
+      case 'Planning':
+        return darkMode ? 'text-faint-dark' : 'text-faint-light';
+    }
+  };
+
+  const muted = darkMode ? 'text-faint-dark' : 'text-faint-light';
+  const body = darkMode ? 'text-ink-dark' : 'text-ink-light';
+  const card = darkMode ? 'bg-surface-dark' : 'bg-surface-light';
+  const chip = darkMode ? 'bg-edge-dark text-faint-dark' : 'bg-edge-light text-faint-light';
+  const accent = darkMode ? 'text-accent-dark' : 'text-accent-light';
+
+  if (selected) {
+    return (
+      <div
+        className={`min-h-screen transition-colors duration-300 ${
+          darkMode ? 'bg-canvas-dark text-ink-dark' : 'bg-canvas-light text-ink-light'
+        }`}
+      >
+        <Nav current="projects" />
+
+        <div className="pt-24 px-6 pb-20">
+          <div className="max-w-4xl mx-auto">
+            <button
+              onClick={() => setSelected(null)}
+              className={`flex items-center space-x-2 mb-8 transition-colors ${
+                darkMode ? 'text-faint-dark hover:text-accent-dark' : 'text-faint-light hover:text-accent-light'
               }`}
             >
               <ArrowLeft size={20} />
-              <span className="font-mono text-lg font-semibold">
-                <span className={darkMode ? 'text-blue-400' : 'text-blue-600'}>{'<'}</span>
-                Back to Home
-                <span className={darkMode ? 'text-blue-400' : 'text-blue-600'}>{'>'}</span>
-              </span>
-            </Link>
-            
-            <button
-              onClick={toggleDarkMode}
-              className={`p-3 rounded-full transition-all transform hover:scale-110 border-2 ${
-                darkMode
-                  ? 'bg-slate-800 border-yellow-400 text-yellow-400 hover:bg-slate-700'
-                  : 'bg-slate-100 border-slate-300 text-slate-600 hover:bg-slate-200'
-              }`}
-              aria-label="Toggle dark mode"
-            >
-              <Moon size={20} className={darkMode ? 'fill-current' : ''} />
+              <span>Back to Projects</span>
             </button>
-          </div>
-        </div>
-      </nav>
 
-      {/* Main Content */}
-      <div className="pt-24 px-6 pb-20 min-h-screen flex items-center justify-center">
-        <div className="max-w-2xl mx-auto text-center">
-          {/* Construction Icon */}
-          <div className={`w-24 h-24 mx-auto mb-8 rounded-full ${
-            darkMode ? 'bg-slate-800 border-slate-700' : 'bg-slate-200 border-slate-300'
-          } border-4 flex items-center justify-center`}>
-            <Construction 
-              size={40} 
-              className={`${
-                darkMode ? 'text-yellow-400' : 'text-yellow-600'
-              } animate-pulse`} 
-            />
-          </div>
-
-          <h1 className="text-4xl md:text-5xl font-light mb-6">
-            Under <span className={`font-semibold ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}>Construction</span>
-          </h1>
-          
-          <p className="text-xl text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-            This page is still under construction. Sorry about the inconvenience, but here&apos;s a picture of Jimbo the bear!
-          </p>
-
-          {/* Jimbo's Picture */}
-          <div className={`w-80 h-80 mx-auto mb-8 rounded-2xl ${
-            darkMode ? 'bg-slate-800 border-slate-700' : 'bg-slate-200 border-slate-300'
-          } border-4 flex items-center justify-center overflow-hidden relative shadow-lg`}>
-            {/* Replace with your actual image path */}
-            <Image
-              src="/images/jimbo.jpg" // Update this path to where you store Jimbo's image
-              alt="Jimbo the bear"
-              width={320}
-              height={320}
-              className="w-full h-full object-cover rounded-xl"
-              priority
-            />
-          </div>
-
-          {/* Call to Action */}
-          <div className="space-y-4">
-            <p className="text-lg text-slate-600 dark:text-slate-400">
-              Check back soon for updates, or explore my other pages!
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/"
-                className={`px-8 py-3 rounded-lg font-medium transition-all transform hover:scale-105 ${
-                  darkMode
-                    ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                    : 'bg-blue-600 hover:bg-blue-700 text-white'
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center space-x-4">
+                <span className={`font-medium ${getStatusColor(selected.status)}`}>{selected.status}</span>
+                <span className={muted}>{selected.year}</span>
+              </div>
+              <a
+                href={selected.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`transition-colors ${
+                  darkMode ? 'text-faint-dark hover:text-ink-dark' : 'text-faint-light hover:text-ink-light'
                 }`}
               >
-                Back to Home
-              </Link>
-              
+                <Github size={20} />
+              </a>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl font-light mb-6">{selected.title}</h1>
+            <p className={`text-lg leading-relaxed mb-8 ${body}`}>{selected.summary}</p>
+
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4">Technologies</h3>
+              <div className="flex flex-wrap gap-2">
+                {selected.tech.map((tech) => (
+                  <span key={tech} className={`px-3 py-1 rounded text-sm ${chip}`}>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Highlights</h3>
+              <ul className={`space-y-3 ${body}`}>
+                {selected.highlights.map((h, i) => (
+                  <li key={i} className="leading-relaxed">
+                    • {h}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
+        </div>
+      </div>
+    );
+  }
 
-          {/* Fun fact about Jimbo */}
-          <div className={`mt-12 p-6 rounded-xl ${
-            darkMode ? 'bg-slate-800' : 'bg-white'
-          } shadow-lg max-w-md mx-auto`}>
-            <p className="text-sm text-slate-600 dark:text-slate-400 italic">
-              &quot;Jimbo keeps me company during late-night coding sessions and reminds me to take breaks!&quot;
+  return (
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        darkMode ? 'bg-canvas-dark text-ink-dark' : 'bg-canvas-light text-ink-light'
+      }`}
+    >
+      <Nav current="projects" />
+
+      <div className="pt-24 px-6 pb-20">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-light mb-6">
+              My <span className={`font-semibold ${accent}`}>Projects</span>
+            </h1>
+            <div className={`w-24 h-1 mx-auto rounded mb-8 ${darkMode ? 'bg-accent-dark' : 'bg-accent-light'}`}></div>
+            <p className={`text-xl max-w-2xl mx-auto ${muted}`}>
+              A collection of projects across systems, ML, and full-stack development.
             </p>
+          </div>
+
+          <div className="space-y-8">
+            {projects.map((project) => (
+              <div
+                key={project.slug}
+                onClick={() => setSelected(project)}
+                className={`p-8 rounded-lg cursor-pointer transition-all hover:shadow-lg border ${card} ${
+                  darkMode ? 'border-edge-dark' : 'border-edge-light'
+                }`}
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h2 className="text-2xl font-semibold mb-2">{project.title}</h2>
+                    <div className={`flex items-center space-x-4 text-sm mb-4 ${muted}`}>
+                      <span className={getStatusColor(project.status)}>{project.status}</span>
+                      <span className="flex items-center">
+                        <Calendar size={14} className="mr-1" />
+                        {project.year}
+                      </span>
+                    </div>
+                  </div>
+                  <Github size={18} className={muted} />
+                </div>
+
+                <p className={`mb-4 leading-relaxed ${muted}`}>{project.summary}</p>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech) => (
+                    <span key={tech} className={`px-2 py-1 rounded text-xs ${chip}`}>
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
