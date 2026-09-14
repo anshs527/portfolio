@@ -55,8 +55,8 @@ export default function Resume() {
             <PageHeader eyebrow="Résumé" title="Ansh Shah" />
 
             <a
-              href="/documents/Ansh_Shah_Resume.pdf"
-              download="Ansh_Shah_Resume.pdf"
+              href="/documents/AnshShah.pdf"
+              download="Ansh_Shah.pdf"
               className={`inline-flex items-center gap-2 px-5 py-3 rounded-lg font-medium shrink-0 transition-colors ${accentBg} ${accentInk} ${
                 darkMode ? 'hover:bg-accent-hover-dark' : 'hover:bg-accent-hover-light'
               }`}
