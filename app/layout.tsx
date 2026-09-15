@@ -1,5 +1,6 @@
 // app/layout.tsx
 import './globals.css'
+import { profile } from '@/lib/data/profile'
 import { Nunito_Sans, JetBrains_Mono } from 'next/font/google'
 import { ThemeProvider } from './contexts/ThemeContext'
 
@@ -8,7 +9,7 @@ const codeFont = JetBrains_Mono({ subsets: ['latin'], variable: '--font-code', d
 
 export const metadata = {
   title: 'Ansh Shah - Portfolio',
-  description: 'Trading Technology Research Assistant at the UIUC Financial Technology Lab, building ML and systems software.',
+  description: profile.heroTagline,
 }
 
 export default function RootLayout({

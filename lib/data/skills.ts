@@ -1,18 +1,7 @@
 export const skills = {
-  languages: ['Python', 'C++', 'Java', 'JavaScript', 'Dart', 'HTML/CSS', 'LaTeX', 'Mathematica'],
-  frameworks: [
-    'React',
-    'Next.js',
-    'FastAPI',
-    'Flutter',
-    'Scikit-Learn',
-    'PyTorch',
-    'NumPy',
-    'Pandas',
-    'Matplotlib',
-    'ONNX',
-  ],
-  tools: ['Git/GitHub', 'PostgreSQL', 'Linux', 'RTKLIB', 'Vercel', 'Android Studio'],
+  languages: ['Python', 'C++', 'Dart', 'Java', 'TypeScript', 'JavaScript'],
+  frameworks: ['React', 'Next.js', 'FastAPI', 'Flutter', 'PyTorch', 'ONNX Runtime', 'NumPy', 'Pandas'],
+  tools: ['PostgreSQL', 'MongoDB', 'Git', 'Linux', 'Vercel', 'RTKLIB'],
   spokenLanguages: ['English (Native)', 'Gujarati', 'Hindi'],
   certifications: [
     {

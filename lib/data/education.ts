@@ -3,17 +3,16 @@ export const education = {
   school: 'University of Illinois Urbana-Champaign',
   location: 'Champaign, IL',
   graduation: 'Expected May 2028',
-  honor: 'Full Tuition Scholarship',
-  extra: 'AFROTC Cadet',
+  honor: 'Full Tuition Scholarship (2025–2026)',
+  gpa: '3.86',
   coursework: [
     'Data Structures and Algorithms',
     'Computer Architecture',
     'High Frequency Trading Technology',
-    'Graph Theory',
     'Linear Algebra',
     'Probability & Statistics',
   ],
-  awards: ['USACO Silver Medalist', 'American Computer Science League National Finalist'],
+  awards: ['USACO Silver Division', 'American Computer Science League National Finalist'],
 };
 
 export const highSchool = {

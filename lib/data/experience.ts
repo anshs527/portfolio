@@ -10,15 +10,15 @@ export interface ExperienceEntry {
 
 export const experience: ExperienceEntry[] = [
   {
-    title: 'Trading Technology Research Assistant',
+    title: 'Student Researcher – GNSS Systems',
     org: 'UIUC Financial Technology Lab',
     location: 'Chicago, IL',
     start: 'Jun. 2026',
     end: 'Present',
     current: true,
     bullets: [
-      'Developed the software pipeline for a GNSS timing receiver, automating u-blox configuration, 72-hour raw UBX capture, RINEX conversion, and Precise Point Positioning of 246K+ epochs across RTKLIB for beamforming.',
-      'Benchmarked 9 filtering configurations over dual-frequency GPS L1/L5, Galileo E1/E5a, and BeiDou B2a observations, achieving 1.2 cm position accuracy for trade timestamp synchronization in HFT infrastructure.',
+      "Automated u-blox GNSS receiver configuration, raw UBX capture, RINEX conversion, and Precise Point Positioning (PPP) post-processing to evaluate antenna-position estimates for timing infrastructure.",
+      "Compared RTKLIB filtering configurations using epoch retention, position scatter, and formal uncertainty; analyzed a separate 10,032-epoch capture with PPP solutions throughout the run.",
     ],
   },
   {
@@ -29,9 +29,9 @@ export const experience: ExperienceEntry[] = [
     end: 'May 2026',
     current: false,
     bullets: [
-      'Developed an offline-first child-safety incident reporting platform for UNICEF, spanning a Flutter mobile app, React/TypeScript admin dashboard, and FastAPI backend on Supabase Postgres.',
-      'Built a full-stack analytics dashboard: designed REST endpoints, keyword search, and filtering across 5 provinces and 210 chiefdoms, rendering 5,000+ results in React with interactive charts, tables, and summary metrics.',
-      'Engineered a client-side media metadata pipeline feeding an offline sync queue, with Alembic migrations and a Hive-backed queue screen for reports submitted without connectivity, reducing report processing time by 22%.',
+      "Developed features for FLI’s deployed child-safety reporting platform, used to collect incident data for UNICEF aid efforts, with a Flutter app, React/TypeScript dashboard, and FastAPI/PostgreSQL backend.",
+      "Built REST endpoints and a React analytics dashboard with keyword search, geographic filters covering 5 provinces and 210 chiefdoms, and interactive charts and tables.",
+      "Implemented client-side media-metadata handling and a Hive-backed offline report queue screen; added Alembic database migrations to support the reporting workflow.",
     ],
   },
   {
@@ -42,8 +42,8 @@ export const experience: ExperienceEntry[] = [
     end: 'Dec. 2025',
     current: false,
     bullets: [
-      'Built a full-stack apparel marketplace platform using Next.js, MongoDB, and Vercel with server-side rendering and optimized API routes across 10+ pages, enabling a student-to-student commerce platform.',
-      'Designed a component-based UI system with Figma prototyping and Tailwind CSS implementation, reducing duplicate code by 35% through standardized design patterns and reusable interface components.',
+      "Built a student apparel marketplace with Next.js, MongoDB, and Vercel, implementing server-side rendering and API routes across more than 10 pages.",
+      "Translated Figma prototypes into reusable Tailwind CSS components to standardize interfaces and consolidate duplicated UI code.",
     ],
   },
 ];

@@ -1,11 +1,11 @@
 export const profile = {
   name: 'Ansh Shah',
-  currentTitle: 'Trading Technology Research Assistant',
+  currentTitle: 'Student Researcher – GNSS Systems',
   currentOrg: 'UIUC Financial Technology Lab',
   heroTagline:
-    'Trading Technology Research Assistant at the UIUC Financial Technology Lab, building ML and systems software.',
+    'Student Researcher – GNSS Systems at the UIUC Financial Technology Lab, building ML and systems software.',
   bio: [
-    "Hi, I'm Ansh — a Math and Computer Science student at UIUC. I work at the intersection of trading technology, signal processing, and applied machine learning: right now that means GNSS timing pipelines and beamforming research at the Financial Technology Lab, alongside personal projects in real-time ML inference and systems programming.",
+    "Hi, I'm Ansh — a Math and Computer Science student at UIUC. I work at the intersection of trading technology, signal processing, and applied machine learning: right now that means GNSS receiver automation and positioning analysis at the Financial Technology Lab, alongside personal projects in real-time ML inference and systems programming.",
     "When I'm not building, you'll find me experimenting with new recipes in the kitchen, reading, or contributing to open-source projects. I believe in continuous learning and sharing knowledge with the developer community.",
   ],
   whatIDo: [

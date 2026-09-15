@@ -57,7 +57,7 @@ export default function Home() {
               />
             </div>
             <div>
-              <p className={`font-note text-2xl -rotate-1 mb-1 ${clay}`}>Curiosity, put to work</p>
+              <p className={`font-note text-2xl -rotate-1 mb-1 ${clay}`}></p>
               <h1 className="font-display text-5xl md:text-7xl leading-[1.05]">
                 Ansh Shah
               </h1>
@@ -68,7 +68,7 @@ export default function Home() {
 
           <p className={`text-xl md:text-2xl max-w-2xl leading-relaxed mb-10 ${ink}`}>{profile.heroTagline}</p>
 
-          <div className="flex flex-wrap gap-3 mb-8"><Link href="/projects" className="pill-link primary">Explore my work <ArrowUpRight size={18} /></Link><Link href="/resume" className="pill-link">View résumé</Link></div>
+          <div className="flex flex-wrap gap-3 mb-8"><Link href="/projects" className="pill-link primary">Explore my work <ArrowUpRight size={18} /></Link><Link href="/resume" className="pill-link">View resume</Link></div>
           <div className="flex flex-wrap gap-3">
             {profile.techTags.slice(0, 6).map((tech) => (
               <span
@@ -105,7 +105,7 @@ export default function Home() {
       <section id="about" className="flex items-center px-6 py-20">
         <div className="max-w-6xl mx-auto w-full">
           <p className={`font-note text-2xl -rotate-1 mb-1 ${clay}`}>a bit about me</p>
-          <h2 className="font-display text-3xl md:text-4xl mb-12">More than just a résumé</h2>
+          <h2 className="font-display text-3xl md:text-4xl mb-12">More than just a resume</h2>
 
           <div className="grid lg:grid-cols-[1.3fr_1fr] gap-16 items-start">
             <div className="space-y-6">

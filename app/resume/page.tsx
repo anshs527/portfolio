@@ -9,7 +9,7 @@ import { profile } from '@/lib/data/profile';
 import { experience } from '@/lib/data/experience';
 import { education, highSchool } from '@/lib/data/education';
 import { skills } from '@/lib/data/skills';
-import { projects } from '@/lib/data/projects';
+import { resumeProjects } from '@/lib/data/resume-projects';
 
 const tabs = [
   { id: 'experience', label: 'Experience', icon: Briefcase },
@@ -52,7 +52,7 @@ export default function Resume() {
       <div className="pt-32 px-6 pb-20">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12">
-            <PageHeader eyebrow="Résumé" title="Ansh Shah" />
+            <PageHeader eyebrow="Resume" title="Ansh Shah" description={profile.currentTitle} />
 
             <a
               href="/documents/AnshShah.pdf"
@@ -205,7 +205,7 @@ export default function Resume() {
                     <div className={`px-4 py-2 rounded-lg whitespace-nowrap mb-2 ${accentBg} ${accentInk}`}>
                       <span className="text-sm font-semibold">{education.honor}</span>
                     </div>
-                    <p className={`text-sm ${muted}`}>{education.extra}</p>
+                    <p className={`text-sm ${muted}`}>GPA: {education.gpa}</p>
                   </div>
                 </div>
               </div>
@@ -238,7 +238,7 @@ export default function Resume() {
           {/* Projects */}
           {activeTab === 'projects' && (
             <div id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" className="space-y-6">
-              {projects.map((project) => (
+              {resumeProjects.map((project) => (
                 <div key={project.slug} className={`p-7 rounded-xl border ${card} ${edge}`}>
                   <div className="flex items-start justify-between gap-4 mb-3">
                     <div>
@@ -253,7 +253,14 @@ export default function Resume() {
                     </div>
                     <span className={`shrink-0 text-sm ${muted}`}>{project.year}</span>
                   </div>
-                  <p className={body}>{project.summary}</p>
+                  <ul className={`space-y-2 ${body}`}>
+                    {project.bullets.map((bullet) => (
+                      <li key={bullet} className="flex gap-3 leading-relaxed">
+                        <span className={accent}>—</span>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
@@ -291,7 +298,7 @@ export default function Resume() {
                 <h3 className="text-lg font-semibold mb-5">Other skills</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className={`font-semibold mb-3 ${accent}`}>Developer tools</h4>
+                    <h4 className={`font-semibold mb-3 ${accent}`}>Databases & tools</h4>
                     <ul className={`space-y-2 ${body}`}>
                       {skills.tools.map((tool) => (
                         <li key={tool} className="flex gap-3">
