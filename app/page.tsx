@@ -3,7 +3,7 @@
 import { Code, Github, Linkedin, Instagram, Mail } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, Radio, ChartNoAxesCombined } from 'lucide-react';
+import { ArrowUpRight, Radio, Activity } from 'lucide-react';
 import { projects } from '@/lib/data/projects';
 import Nav from './components/Nav';
 import Contours from './components/Contours';
@@ -57,7 +57,6 @@ export default function Home() {
               />
             </div>
             <div>
-              <p className={`font-note text-2xl -rotate-1 mb-1 ${clay}`}></p>
               <h1 className="font-display text-5xl md:text-7xl leading-[1.05]">
                 Ansh Shah
               </h1>
@@ -68,7 +67,7 @@ export default function Home() {
 
           <p className={`text-xl md:text-2xl max-w-2xl leading-relaxed mb-10 ${ink}`}>{profile.heroTagline}</p>
 
-          <div className="flex flex-wrap gap-3 mb-8"><Link href="/projects" className="pill-link primary">Explore my work <ArrowUpRight size={18} /></Link><Link href="/resume" className="pill-link">View resume</Link></div>
+          <div className="flex flex-wrap gap-3 mb-8"><Link href="/projects" className="pill-link primary">View projects <ArrowUpRight size={18} /></Link><Link href="/resume" className="pill-link">View resume</Link></div>
           <div className="flex flex-wrap gap-3">
             {profile.techTags.slice(0, 6).map((tech) => (
               <span
@@ -82,19 +81,38 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="px-6 py-10" aria-labelledby="current-work-title">
+        <div className={`max-w-4xl mx-auto rounded-xl border p-7 md:p-9 ${surface} ${edge}`}>
+          <p className={`font-note ${accent}`}>In progress</p>
+          <h2 id="current-work-title" className="font-display text-2xl md:text-3xl mb-3">Trading Infrastructure Optimizer</h2>
+          <p className={`leading-relaxed max-w-3xl mb-5 ${faint}`}>
+            I&apos;m developing an electronic trading testbed to measure order flow, tail latency, and recovery under failures.
+            The planned optimizer will test small configuration changes against those measurements.
+          </p>
+          <Link href="/projects/trading-infrastructure-optimizer" className={`inline-flex items-center gap-2 font-bold ${accent}`}>
+            Read the project plan <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
+
       <section className="px-6 py-16" aria-labelledby="selected-work">
         <div className="max-w-4xl mx-auto">
           <p className={`font-note ${accent}`}>Selected work</p>
-          <h2 id="selected-work" className="text-3xl md:text-4xl mb-8">From a question to a working system.</h2>
+          <h2 id="selected-work" className="text-3xl md:text-4xl mb-8">Projects</h2>
           <div className="grid md:grid-cols-2 gap-5">
-            {projects.slice(0, 2).map((project, index) => {
-              const Icon = index === 0 ? Radio : ChartNoAxesCombined;
+            {[
+              { slug: 'multi-venue-order-book', icon: Activity, category: 'Market data · Distributed systems', title: 'Market data across three exchanges', description: 'From WebSocket updates to reconstructed books, analytics, and a live API.' },
+              { slug: 'rf-modulation-classifier', icon: Radio, category: 'Signal processing · C++ · ML', title: 'Classifying radio signals', description: 'From raw IQ samples to a measured C++ inference pipeline.' },
+            ].map((item) => {
+              const project = projects.find((entry) => entry.slug === item.slug);
+              if (!project) return null;
+              const Icon = item.icon;
               return <Link key={project.slug} href={`/projects/${project.slug}`} className={`organic-hover p-7 rounded-xl border ${surface} ${edge}`}>
                 <Icon size={28} className={`mb-8 ${accent}`} aria-hidden="true" />
-                <p className={`text-sm mb-2 ${faint}`}>{index === 0 ? 'Signal processing · C++ · ML' : 'Probability · Data engineering'}</p>
-                <h3 className="text-2xl font-bold mb-3">{index === 0 ? 'Finding meaning in the noise.' : 'A prediction is only half the bet.'}</h3>
-                <p className={`leading-relaxed mb-6 ${faint}`}>{index === 0 ? 'Classifying radio signals, then measuring every microsecond of inference.' : 'Exploring the gap between predicting player performance and finding a mathematical edge.'}</p>
-                <span className={`inline-flex items-center gap-2 font-bold ${accent}`}>Explore the project <ArrowUpRight size={18} /></span>
+                <p className={`text-sm mb-2 ${faint}`}>{item.category}</p>
+                <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
+                <p className={`leading-relaxed mb-6 ${faint}`}>{item.description}</p>
+                <span className={`inline-flex items-center gap-2 font-bold ${accent}`}>Project details <ArrowUpRight size={18} aria-hidden="true" /></span>
               </Link>;
             })}
           </div>
@@ -105,7 +123,7 @@ export default function Home() {
       <section id="about" className="flex items-center px-6 py-20">
         <div className="max-w-6xl mx-auto w-full">
           <p className={`font-note text-2xl -rotate-1 mb-1 ${clay}`}>a bit about me</p>
-          <h2 className="font-display text-3xl md:text-4xl mb-12">More than just a resume</h2>
+          <h2 className="font-display text-3xl md:text-4xl mb-12">Background</h2>
 
           <div className="grid lg:grid-cols-[1.3fr_1fr] gap-16 items-start">
             <div className="space-y-6">
@@ -140,7 +158,7 @@ export default function Home() {
           <p className={`font-note text-2xl -rotate-1 mb-1 ${clay}`}>say hi</p>
           <h2 className="font-display text-3xl md:text-4xl mb-6">Let&apos;s connect</h2>
           <p className={`text-lg mb-12 max-w-xl ${faint}`}>
-            Always interested in new opportunities, collaborations, or a chat about technology and innovation.
+            Email is the best way to reach me about research, engineering work, or a project you think I should see.
           </p>
 
           <div className="grid sm:grid-cols-2 gap-4">

@@ -17,7 +17,7 @@ export interface Project {
   tech: string[];
   summary: string;
   highlights: string[];
-  github: string;
+  github?: string;
   metrics?: ProjectMetric[];
   components?: string[];
   figures?: ProjectFigure[];
@@ -26,6 +26,36 @@ export interface Project {
 const RF_RAW = 'https://raw.githubusercontent.com/anshs527/rf-modulation-classifier/master/docs';
 
 export const projects: Project[] = [
+  {
+    slug: 'trading-infrastructure-optimizer',
+    title: 'Trading Infrastructure Optimizer',
+    year: '2026',
+    status: 'In Progress',
+    tech: ['Aeron (planned)', 'Java / C++', 'Python', 'GCP (planned)'],
+    summary:
+      'An electronic trading testbed for measuring order flow, tail latency, and failure recovery. The longer-term goal is an optimizer that tests small configuration changes and keeps only measured improvements.',
+    highlights: [
+      'The proposed testbed has trading clients, an order gateway, matching engines, a market-data service, and a separate execution-report path.',
+      'The first milestone is a working order path with latency, throughput, and queue-depth instrumentation before introducing automated tuning.',
+      'Later experiments will compare baseline and tuned configurations under burst traffic and failures, with checks that can reject or roll back harmful changes.',
+    ],
+  },
+  {
+    slug: 'multi-venue-order-book',
+    title: 'Multi-Venue Order Book Analytics Pipeline',
+    year: '2026',
+    status: 'Completed',
+    tech: ['Python', 'asyncio', 'Redpanda', 'ClickHouse', 'FastAPI'],
+    summary:
+      'Ingests Binance, Coinbase, and Kraken order books, normalizes exchange updates, and serves one-second analytics through a WebSocket API.',
+    components: ['Exchange adapters', 'Redpanda event stream', 'Order-book reconstruction', 'Analytics worker', 'ClickHouse and API'],
+    highlights: [
+      'Built asynchronous WebSocket adapters for three venues with snapshots, reconnects, and sequence-gap handling where the feed provides sequence numbers.',
+      'Published versioned, venue-and-symbol-keyed events to Redpanda; a worker reconstructs books and computes spread and top-ten-level imbalance.',
+      'Stored completed windows in ClickHouse and exposed historical queries and live updates through FastAPI. Binance trades also support trade VWAP.',
+    ],
+    github: 'https://github.com/anshs527/trading-system',
+  },
   {
     slug: 'rf-modulation-classifier',
     title: 'RF Modulation Classifier with Real-Time C++ Inference',
@@ -77,7 +107,7 @@ export const projects: Project[] = [
     status: 'Completed',
     tech: ['Python', 'PostgreSQL', 'SQLAlchemy', 'Flask', 'Streamlit', 'NBA API'],
     summary:
-      'A full research platform for NBA player-prop betting: a weighted-average prediction model, an expected-value parlay analyzer, a paper-trading workflow, and a browser extension. Built to explore why predicting performance is not enough to establish a betting edge.',
+      'An NBA player-prop research tool with a weighted-average prediction model, expected-value analyzer, paper-trading workflow, and browser extension.',
     metrics: [
       { label: 'Historical games', value: '49,000+' },
       { label: 'Players tracked', value: '600+' },
@@ -100,9 +130,9 @@ export const projects: Project[] = [
     year: '2025',
     status: 'Completed',
     tech: ['Python', 'Cr4wl', 'Pandas'],
-    summary: 'A scalable scraping pipeline that structures rental listings into JSON for automated ingestion.',
+    summary: 'Collects rental listings, removes duplicates, and structures the results as JSON for database ingestion.',
     highlights: [
-      'Developed a scalable web scraping pipeline that extracted and structured 50,000+ rental listings into JSON for automated database ingestion, allowing for a 30% reduction in manual data entry.',
+      'Extracted and structured 50,000+ rental listings into JSON for database ingestion, reducing manual data entry by 30%.',
       'Reduced collection time by 40% through concurrent scraping, request optimization, and duplicate detection.',
     ],
     github: 'https://github.com/anshs527/peerstoragedata',

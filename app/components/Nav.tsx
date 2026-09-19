@@ -10,7 +10,6 @@ export type NavPage = 'home' | 'projects' | 'literature' | 'recipes' | 'resume';
 const links: { id: NavPage; label: string; href: string }[] = [
   { id: 'home', label: 'Home', href: '/' },
   { id: 'projects', label: 'Projects', href: '/projects' },
-  { id: 'literature', label: 'Literature', href: '/literature' },
   { id: 'recipes', label: 'Recipes', href: '/recipes' },
   { id: 'resume', label: 'Resume', href: '/resume' },
 ];

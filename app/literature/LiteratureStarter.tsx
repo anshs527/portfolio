@@ -1,5 +1,7 @@
 'use client';
 
+// Saved page source. Rename to page.tsx and restore the Nav link to publish it again.
+
 import { BookOpen, PenLine, ExternalLink } from 'lucide-react';
 import Nav from '../components/Nav';
 import PageHeader from '../components/PageHeader';

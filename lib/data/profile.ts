@@ -5,8 +5,8 @@ export const profile = {
   heroTagline:
     'Student Researcher – GNSS Systems at the UIUC Financial Technology Lab, building ML and systems software.',
   bio: [
-    "Hi, I'm Ansh — a Math and Computer Science student at UIUC. I work at the intersection of trading technology, signal processing, and applied machine learning: right now that means GNSS receiver automation and positioning analysis at the Financial Technology Lab, alongside personal projects in real-time ML inference and systems programming.",
-    "When I'm not building, you'll find me experimenting with new recipes in the kitchen, reading, or contributing to open-source projects. I believe in continuous learning and sharing knowledge with the developer community.",
+    "I'm a Math and Computer Science student at UIUC. At the Financial Technology Lab, I work on GNSS receiver automation and positioning analysis.",
+    "My other projects include a C++ radio-classification pipeline and a multi-exchange order-book service. I'm now developing a testbed for measuring latency in electronic trading systems. Outside of that, I like cooking and reading.",
   ],
   whatIDo: [
     'Systems & ML engineering',

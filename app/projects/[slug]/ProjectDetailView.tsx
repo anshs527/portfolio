@@ -19,7 +19,7 @@ export default function ProjectDetailView({ project }: { project: Project }) {
   const accent = darkMode ? 'text-accent-dark' : 'text-accent-light';
   const surface = darkMode ? 'bg-surface-dark' : 'bg-surface-light';
   const edge = darkMode ? 'border-edge-dark' : 'border-edge-light';
-  const statusColor = project.status === 'Completed' ? accent : muted;
+  const statusColor = project.status === 'Planning' ? muted : accent;
 
   return (
     <div
@@ -41,6 +41,13 @@ export default function ProjectDetailView({ project }: { project: Project }) {
             Back to projects
           </Link>
 
+          {project.status === 'In Progress' && (
+            <div className={`rounded-xl border p-5 mb-8 ${surface} ${edge}`}>
+              <p className={`font-note mb-1 ${accent}`}>In progress</p>
+              <p className={`text-sm ${muted}`}>This page describes the intended system and the work ahead. Performance results will be added after experiments are run.</p>
+            </div>
+          )}
+
           <div className="flex items-center gap-4 mb-4">
             <span className={`font-medium ${statusColor}`}>{project.status}</span>
             <span className={`flex items-center gap-1 text-sm ${muted}`}>
@@ -51,17 +58,19 @@ export default function ProjectDetailView({ project }: { project: Project }) {
 
           <div className="flex items-start justify-between gap-4 mb-6">
             <h1 className="font-display text-3xl md:text-4xl">{project.title}</h1>
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View source on GitHub"
-              className={`shrink-0 transition-colors mt-2 ${
-                darkMode ? 'text-faint-dark hover:text-ink-dark' : 'text-faint-light hover:text-ink-light'
-              }`}
-            >
-              <Github size={22} />
-            </a>
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View source on GitHub"
+                className={`shrink-0 transition-colors mt-2 ${
+                  darkMode ? 'text-faint-dark hover:text-ink-dark' : 'text-faint-light hover:text-ink-light'
+                }`}
+              >
+                <Github size={22} />
+              </a>
+            )}
           </div>
 
           <p className={`text-lg leading-relaxed mb-10 ${body}`}>{project.summary}</p>
@@ -80,7 +89,7 @@ export default function ProjectDetailView({ project }: { project: Project }) {
           <ProjectLearning slug={project.slug} />
 
           <div className="mb-10">
-            <h3 className={`font-mono text-xs tracking-[0.2em] uppercase mb-4 ${accent}`}>Technologies</h3>
+            <h3 className={`font-mono text-xs tracking-[0.2em] uppercase mb-4 ${accent}`}>{project.status === 'In Progress' ? 'Tools under consideration' : 'Technologies'}</h3>
             <div className="flex flex-wrap gap-2">
               {project.tech.map((tech) => (
                 <span key={tech} className={`px-3 py-1 rounded text-sm font-mono ${chip}`}>
@@ -104,7 +113,7 @@ export default function ProjectDetailView({ project }: { project: Project }) {
           )}
 
           <div className={project.figures ? 'mb-10' : ''}>
-            <h3 className={`font-mono text-xs tracking-[0.2em] uppercase mb-4 ${accent}`}>Implementation details</h3>
+            <h3 className={`font-mono text-xs tracking-[0.2em] uppercase mb-4 ${accent}`}>{project.status === 'In Progress' ? 'Project plan' : 'Implementation details'}</h3>
             <ul className={`space-y-4 ${body}`}>
               {project.highlights.map((h, i) => (
                 <li key={i} className="leading-relaxed flex gap-3">

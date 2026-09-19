@@ -15,7 +15,7 @@ export default function Projects() {
       case 'Completed':
         return darkMode ? 'text-accent-dark' : 'text-accent-light';
       case 'In Progress':
-        return darkMode ? 'text-faint-dark' : 'text-faint-light';
+        return darkMode ? 'text-accent-dark' : 'text-accent-light';
       case 'Planning':
         return darkMode ? 'text-faint-dark' : 'text-faint-light';
     }
@@ -50,6 +50,11 @@ export default function Projects() {
                 href={`/projects/${project.slug}`}
                 className={`organic-hover group block p-8 rounded-xl border transition-colors ${card} ${edge} ${hoverEdge}`}
               >
+                {project.status === 'In Progress' && (
+                  <div className={`mb-5 inline-flex rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wider ${darkMode ? 'border-accent-dark/50 bg-accent-dark/10 text-accent-dark' : 'border-accent-light/40 bg-accent-light/10 text-accent-light'}`}>
+                    In progress
+                  </div>
+                )}
                 <div className="flex items-start justify-between gap-4 mb-3">
                   <div>
                     <h2 className="text-xl font-semibold mb-2 flex items-center gap-2">
@@ -69,7 +74,7 @@ export default function Projects() {
                       </span>
                     </div>
                   </div>
-                  <Github size={18} className={`shrink-0 ${muted}`} />
+                  {project.github && <Github size={18} className={`shrink-0 ${muted}`} aria-label="GitHub repository available" />}
                 </div>
 
                 <p className={`mb-4 leading-relaxed ${muted}`}>{project.summary}</p>

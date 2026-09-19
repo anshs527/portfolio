@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Radio, ChartNoAxesCombined } from 'lucide-react';
+import { MarketPipelineLearning, OptimizerLearning } from './TradingProjectLearning';
 
 function SignalLab() {
   const [snr, setSnr] = useState(15);
@@ -58,6 +59,8 @@ function OddsLab() {
 }
 
 export default function ProjectLearning({ slug }: { slug: string }) {
+  if (slug === 'multi-venue-order-book') return <MarketPipelineLearning />;
+  if (slug === 'trading-infrastructure-optimizer') return <OptimizerLearning />;
   if (slug === 'rf-modulation-classifier') return <>
     <section className="study-section" id="story"><p className="font-note">The question</p><h2>How quickly can a signal become useful information?</h2><p>My interest in defense and trading technology led me here: the time between receiving a signal and acting on it can matter as much as the information itself. I wanted to explore one part of that chain—recognizing a radio signal’s modulation—and carry a machine-learning model into a measured C++ inference pipeline.</p><p>This project classifies recorded signals. It does not demonstrate a deployed defense system, a trading advantage, or an end-to-end radio link.</p></section>
     <section className="study-section"><h2>A little radio, before the code.</h2><div className="grid sm:grid-cols-2 gap-6"><div><h3 className="font-bold text-lg">RF is the medium.</h3><p>RF stands for radio frequency. Wireless systems use electromagnetic waves to carry information between transmitters and receivers. The receiver observes a mixture of the intended signal, noise, and effects of the channel.</p></div><div><h3 className="font-bold text-lg">Modulation is how we write on it.</h3><p>A transmitter varies a carrier’s amplitude, frequency, or phase to represent information. PSK uses phase; QAM combines amplitude and phase. Identifying the modulation helps a receiver decide how to interpret an unfamiliar signal.</p></div></div><p>More possible symbols can carry more bits in each transmission interval, but closely spaced symbols become harder to distinguish in noise. That tradeoff makes signal quality essential context for any accuracy claim.</p><a className="underline text-sm" href="https://pysdr.org/content/digital_modulation">Background reading: PySDR’s digital modulation guide</a></section>
